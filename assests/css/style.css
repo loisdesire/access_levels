@@ -1,0 +1,264 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F7F9FC; /* Light background for contrast */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2C3E50; /* Darker blue for sidebar */
+  color: #ECF0F1; /* Light text color */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+}
+
+.sidebar-header {
+  margin-bottom: 50px;
+  font-size: 24px; /* Larger font size for the title */
+  text-align: center; /* Center align title */
+  color: #3498DB; /* Bright blue for the title */
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 20px 0;
+}
+
+.nav-links a {
+  color: #ECF0F1;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding for better click area */
+  border-radius: 5px; /* Rounded corners for links */
+  transition: background 0.3s; /* Smooth background change */
+}
+
+.nav-links a i {
+  margin-right: 10px;
+}
+
+.nav-links a:hover {
+  background-color: #34495E; /* Slightly lighter background on hover */
+}
+
+/* Position the logout button at the bottom */
+.logout {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.logout a {
+  color: #ECF0F1;
+  text-decoration: none;
+  font-size: 18px;
+  width: 215px;
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding for better click area */
+  border-radius: 5px; /* Rounded corners for links */
+  transition: background 0.3s; /* Smooth background change */
+}
+
+.logout a i {
+  margin-right: 10px;
+}
+
+.logout a:hover {
+  background-color: #34495E; /* Slightly lighter background on hover */
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-left: 250px; /* Adjusted for sidebar */
+}
+
+/* Header (User Profile Only) */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  /* background-color: white; White background for the header */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Subtle shadow for depth */
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Widgets Section */
+.widgets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.widget {
+  background-color: #fff; /* White background for widgets */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s; /* Add a hover effect */
+}
+
+.widget:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.widget h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #3498DB; /* Bright blue for headings */
+}
+
+.widget p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #27AE60; /* Green for metrics */
+}
+
+/* Charts Section */
+/* .charts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+} */
+/* 
+.chart {
+  background-color: #fff; 
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+} */
+
+canvas {
+  width: 100%;
+  height: 250px;
+}
+
+/* User List Styles */
+.user-list {
+  list-style-type: none; /* Removes default bullet points from list */
+  padding: 20px; /* Adds padding around the list */
+  max-width: 600px; /* Sets a maximum width for the list */
+  margin: 20px auto; /* Centers the list on the page */
+  background-color: #f8f9fa; /* Light background for the list area */
+  border-radius: 10px; /* Rounded corners for the list container */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the list container */
+}
+
+.user-list h1 {
+  text-align: center; /* Centers the header */
+  font-size: 24px; /* Increases font size for emphasis */
+  color: #34495e; /* Dark blue color for the header */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+/* Individual List Item Styles */
+.user-list li {
+  background-color: #ffffff; /* Sets background color of each list item */
+  margin: 10px 0; /* Adds vertical spacing between items */
+  padding: 15px; /* Adds padding inside each item */
+  border-radius: 8px; /* Rounds the corners of each item */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  transition: background 0.3s, transform 0.3s; /* Smooth transition for background and scale */
+  display: flex; /* Flex layout for the item */
+  align-items: center; /* Centers the content vertically */
+  justify-content: space-between; /* Space between content */
+}
+
+.user-list li:hover {
+  background-color: #ecf0f1; /* Changes background color on hover */
+  transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+/* User Name Styling */
+.user-list li span {
+  font-weight: 500; /* Medium font weight for names */
+  color: #34495e; /* Dark blue color for names */
+  font-size: 18px; /* Font size for names */
+}
+
+/* Add a more creative touch with an icon */
+.user-list li .user-icon {
+  width: 40px; /* Icon width */
+  height: 40px; /* Icon height */
+  border-radius: 50%; /* Circular icon */
+  background-color: #2980b9; /* Blue background for icon */
+  display: flex; /* Flex layout for the icon */
+  align-items: center; /* Centers the icon */
+  justify-content: center; /* Centers the icon */
+  color: #fff; /* White color for the icon text */
+  font-weight: bold; /* Bold font for the icon text */
+  margin-right: 10px; /* Space between icon and name */
+}
+
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 200px; /* Optional: Reduce width on smaller screens */
+  }
+  .main-content {
+      margin-left: 200px; /* Adjust for new sidebar width */
+  }
+  .widgets {
+      grid-template-columns: repeat(2, 1fr); /* 2 widgets per row */
+  }
+  .charts {
+      grid-template-columns: 1fr; /* 1 chart per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+      width: 100%; /* Full width on mobile */
+      height: auto; /* Allow height to adjust */
+      position: relative; /* Relative positioning */
+  }
+  .main-content {
+      margin-left: 0; /* No margin for mobile */
+      padding: 10px; /* Reduce padding for mobile */
+  }
+  .widgets {
+      grid-template-columns: 1fr; /* 1 widget per row */
+  }
+}

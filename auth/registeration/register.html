@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Project</title>
+    <link rel="stylesheet" href="/auth/registeration/regstyle.css">
+</head>
+<body>
+    <div class="box">
+
+        <!-----------------------Illustration and background------------------->
+        <div class="l-selection">
+            <div class="illustration">
+                <img src="/assests/images/Rectangle 1.png" alt="rectangle" class="rect">
+            </div>
+            <div class="subilu">
+                <img src="/assests/images/illu.png" alt="illu" class="illu">
+            </div>
+        </div>        
+
+        <!-----------------------Illustration and background------------------->
+        <div class="r-selection">
+            <div class="login-box">
+                <div class="cube-icon">
+                    <img src="/assests/images/cube.png" alt="logo" class="cube">
+                </div>
+
+                <h2>Create an account</h2>
+
+                <form id="registerForm" class="login-form">
+
+                    <div class="input">
+                        <label for="fname">First name</label><br>
+                        <input type="text" id="fname" name="fname" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="lname">Last name</label><br>
+                        <input type="text" id="lname" name="lname" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="email">Email address</label><br>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="input">
+                        <label for="password">Password</label><br>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div>
+                        <label for="role">Role:</label>
+                        <select id="role" name="role">
+                            <option value="admin">Admin</option>
+                            <option value="staff">Staff</option>
+                            <option value="student">Student</option>
+                        </select><br><br>
+                    </div>
+
+                    <button type="submit" class="loginbtn">Create my account</button>
+                </form>
+
+                <div class="register">
+                    <p>Already have an account? <a href="/auth/login/login.html">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

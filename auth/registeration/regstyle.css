@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+}
+
+body {
+    /* width: 400px; */
+    height: 100vh;
+    font-family: work sans, sans-serif;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    /* overflow-y: hidden; */
+}
+
+.box{
+    width: 1000px;
+    height: 600px;
+    justify-content: center;
+    align-content: center;
+}
+
+h2{
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #57595A;
+}
+
+
+.l-selection{
+    justify-content: center;
+    align-items: center;
+}
+
+.rect{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.illu{
+    position: relative;
+    width: 400px;
+    top: 70px;
+    left: 90px;
+}
+
+.r-selection{
+    position: relative;
+    width: 50%;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    bottom: 400px;
+    left: 795px;
+}
+
+.login-box{
+    width: 100%;
+    max-width: 350px;
+    text-align: justify;
+}
+
+.login-form{
+    width: 100%;
+}
+
+.cube{
+    position: relative;
+    width: 70px;
+    margin-bottom: 20px;
+    top: 13px;
+}
+
+input[type=email], input[type=password], input[type=text], select
+{ 
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px  solid #D2D3D3;
+    font-size: 14px;
+}
+
+.input{
+width: 400px;
+gap: 6.75px;
+padding: 4px;
+display: block;
+font-size: 14px;
+}
+
+.loginbtn{
+    position: relative;
+    width: 400px;
+    padding: 10px;
+    background-color: #6EA6C0;
+    color: #111;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    left: 5px;
+    margin-top: 30px;
+}
+
+.register{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
