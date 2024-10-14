@@ -2,22 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get logged-in user data from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-  
-    document.addEventListener('DOMContentLoaded', function () {
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    
-        // If no user is logged in, redirect to login page
-        if (!loggedInUser) {
-            // alert('You need to log in to access this page.');
-            window.location.href = '/auth/login/login.html'; // Redirect to login
-        } else {
-            // Display logged-in user's name and role in the dashboard
-            const userProfile = document.querySelector('.user-profile span');
-            if (userProfile) {
-                userProfile.textContent = `Welcome, ${loggedInUser.firstName}`;
-            }
-        }
-    });
+    // If no user is logged in, redirect to login page
+    if (!loggedInUser) {
+        // alert('You need to log in to access this page.');
+        window.location.href = '/auth/login/login.html';
+        return;
+    }
+
+    // Display logged-in user's name in the header
+    const userProfile = document.querySelector('.user-profile span');
+    if (userProfile) {
+        userProfile.textContent = `Welcome, ${loggedInUser.firstName}`;
+    }
 
     // Fetch all users from localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
