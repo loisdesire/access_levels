@@ -8,24 +8,6 @@
     <link rel="stylesheet" href="/assests/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-5e2ESR8Ycmos6g3gAKr1Jvwye8sW4U1u/cAKulfVJnkakCcMqhOudbtPnvJ+nbv7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-
-    // If no user is logged in, redirect to login page
-    if (!loggedInUser) {
-        alert('You need to log in to access this page.');
-        window.location.href = '/auth/login/login.html'; // Redirect to login
-    } else {
-        // Display logged-in user's name and role in the dashboard
-        const userProfile = document.querySelector('.user-profile span');
-        if (userProfile) {
-            userProfile.textContent = `Welcome, ${loggedInUser.firstName}`;
-        }
-    }
-});
-
-    </script>
 </head>
 <body>
 
