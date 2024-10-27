@@ -152,6 +152,51 @@
   color: #27AE60; /* Green for metrics */
 }
 
+/* Announcement Section */
+
+.announcement-section {
+  padding: 20px;
+}
+
+.announcement-section h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#announcement-list {
+  margin-bottom: 20px;
+}
+
+.announcement-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+#create-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#create-btn:hover {
+  background-color: #45a049;
+}
+
+#announcement-text {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+
 /* Charts Section */
 /* .charts {
   display: grid;

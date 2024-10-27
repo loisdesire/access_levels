@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements</title>
+    <link rel="stylesheet" href="/assests/css/style.css">
+</head>
+<body>
+
+    <div id="sidebar-container"></div> <!-- Sidebar -->
+
+    <div class="dashboard">
+        <div class="main-content">
+            <header class="header">
+                <div class="user-profile">
+                    <img src="/assests/images/user.webp" alt="User Image">
+                    <span>User name</span>
+                </div>
+            </header>
+
+            <section class="announcement-section">
+                <h3>Announcements</h3>
+
+                <div id="announcement-list">
+                    <!-- Announcement items will be dynamically inserted here -->
+                </div>
+
+                <!-- Admin and staff can create/edit announcements -->
+                <div id="announcement-actions">
+                    <textarea id="announcement-text" placeholder="Write an announcement..."></textarea>
+                    <button id="create-btn" class="create-btn">Create Announcement</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Load the sidebar HTML
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/components/sideBar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading sidebar:', error));
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>
