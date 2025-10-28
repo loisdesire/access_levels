@@ -4,21 +4,28 @@
     /* box-sizing: border-box; */
 }
 
+
 body {
-    /* width: 400px; */
-    height: 100vh;
     font-family: work sans, sans-serif;
     background-color: #fff;
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     /* overflow-y: hidden; */
 }
 
 .box{
-    width: 1000px;
+    width: 100%;
+    max-width: 1200px;
     height: 600px;
-    justify-content: center;
-    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 h2{
@@ -30,37 +37,69 @@ h2{
 
 
 .l-selection{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #f7f7f7;
+    height: 100%;
+    min-width: 0;
+    position: relative;
+}
+
+.illustration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rect{
     position: absolute;
-    width: 50%;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.subilu {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .illu{
-    position: relative;
-    width: 400px;
-    top: 70px;
-    left: 90px;
+    width: 300px;
+    max-width: 80%;
+    height: auto;
 }
 
 .r-selection{
-    position: relative;
-    width: 50%;
-    padding: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    bottom: 400px;
-    left: 795px;
+    padding: 40px 32px;
+    background: #fff;
+    min-width: 0;
 }
 
 .login-box{
     width: 100%;
     max-width: 350px;
-    text-align: justify;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-form{
@@ -81,33 +120,55 @@ input[type=email], input[type=password], input[type=text], select
     border-radius: 10px;
     border: 1px  solid #D2D3D3;
     font-size: 14px;
+    padding: 0 10px;
 }
 
 .input{
-width: 400px;
-gap: 6.75px;
-padding: 4px;
-display: block;
-font-size: 14px;
+    width: 100%;
+    gap: 6.75px;
+    padding: 10px 0;
+    display: block;
+    font-size: 14px;
+}
+
+.input label {
+    color: #57595A;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
 }
 
 .loginbtn{
     position: relative;
-    width: 400px;
+    width: 100%;
     padding: 10px;
     background-color: #6EA6C0;
     color: #111;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    left: 5px;
     margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.loginbtn:hover {
+    background-color: #5a8fa8;
 }
 
 .register{
     position: relative;
     margin-top: 20px;
-    margin-left: 10px;
+    text-align: center;
+}
+
+.register a {
+    color: #6EA6C0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register a:hover {
+    text-decoration: underline;
 }
 

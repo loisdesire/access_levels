@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Dashboard</title>
-    <link rel="stylesheet" href="/assests/css/style.css">
+    <link rel="stylesheet" href="../assests/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-5e2ESR8Ycmos6g3gAKr1Jvwye8sW4U1u/cAKulfVJnkakCcMqhOudbtPnvJ+nbv7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -20,29 +20,52 @@
       <!-- Header (User Profile Only) -->
       <header class="header">
         <div class="user-profile">
-          <img src="/assests/images/user.webp" alt="User Image">
+          <img src="../assests/images/user.webp" alt="User Image">
           <span>User Name</span>
         </div>
       </header>
 
       <!-- Widgets Section -->
       <section class="widgets">
-        <div class="widget" id="usersWidget">
-          <h3>Students</h3>
-          <p>200</p>
+        <div class="widget" id="studentsWidget">
+          <h3>Total Students</h3>
+          <p>0</p>
         </div>
+        <div class="widget" id="announcementsWidget">
+          <h3>Announcements</h3>
+          <p>0</p>
+        </div>
+      </section>
 
 
   <script>
     // Load the sidebar HTML
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('/components/sideBar.html')
+        fetch('../components/sideBar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('sidebar-container').innerHTML = data;
+                
+                // Initialize sidebar navigation after it's loaded
+                initializeSidebarNavigation();
             })
             .catch(error => console.error('Error loading sidebar:', error));
     });
+    
+    // Function to initialize sidebar navigation
+    function initializeSidebarNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const basePath = '../'; // We're in dashboard folder
+        
+        navLinks.forEach(link => {
+            const page = link.getAttribute('data-page');
+            if (page === 'admin') {
+                link.href = 'admin.html';
+            } else if (page === 'announcements') {
+                link.href = basePath + 'modules/announcements/main.html';
+            }
+        });
+    }
 
     
 </script>

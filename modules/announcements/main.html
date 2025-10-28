@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Announcements</title>
-    <link rel="stylesheet" href="/assests/css/style.css">
+    <link rel="stylesheet" href="../../assests/css/style.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
         <div class="main-content">
             <header class="header">
                 <div class="user-profile">
-                    <img src="/assests/images/user.webp" alt="User Image">
+                    <img src="../../assests/images/user.webp" alt="User Image">
                     <span>User name</span>
                 </div>
             </header>
@@ -38,13 +38,31 @@
     <script>
         // Load the sidebar HTML
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('/components/sideBar.html')
+            fetch('../../components/sideBar.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('sidebar-container').innerHTML = data;
+                    
+                    // Initialize sidebar navigation after it's loaded
+                    initializeSidebarNavigation();
                 })
                 .catch(error => console.error('Error loading sidebar:', error));
         });
+        
+        // Function to initialize sidebar navigation
+        function initializeSidebarNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const basePath = '../../'; // We're in modules/announcements folder
+            
+            navLinks.forEach(link => {
+                const page = link.getAttribute('data-page');
+                if (page === 'admin') {
+                    link.href = basePath + 'dashboard/admin.html';
+                } else if (page === 'announcements') {
+                    link.href = 'main.html';
+                }
+            });
+        }
     </script>
 
     <script src="main.js"></script>

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If no user is logged in, redirect to login page
     if (!loggedInUser) {
         // alert('You need to log in to access this page.');
-        window.location.href = '/auth/login/login.html';
+        window.location.href = '../auth/login/login.html';
         return;
     }
 
@@ -38,18 +38,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update Admin dashboard
     function updateAdminDashboard(data) {
-        document.getElementById('revenueWidget').querySelector('p').textContent = data.admins;
-        document.getElementById('usersWidget').querySelector('p').textContent = data.students;
-        document.getElementById('messagesWidget').querySelector('p').textContent = data.staffs;
+        const revenueWidget = document.getElementById('revenueWidget');
+        const usersWidget = document.getElementById('usersWidget');
+        const messagesWidget = document.getElementById('messagesWidget');
+        
+        if (revenueWidget) revenueWidget.querySelector('p').textContent = data.admins;
+        if (usersWidget) usersWidget.querySelector('p').textContent = data.students;
+        if (messagesWidget) messagesWidget.querySelector('p').textContent = data.staffs;
     }
 
-    // Placeholder functions for other dashboards (you can expand these later if needed)
+    // Function to update Staff dashboard
     function updateStaffDashboard(data) {
-        // Modify this function to update staff-specific widgets
+        const studentsWidget = document.getElementById('studentsWidget');
+        const staffsWidget = document.getElementById('staffsWidget');
+        
+        if (studentsWidget) studentsWidget.querySelector('p').textContent = data.students;
+        if (staffsWidget) staffsWidget.querySelector('p').textContent = data.staffs;
     }
 
+    // Function to update Student dashboard
     function updateStudentDashboard(data) {
-        // Modify this function to update student-specific widgets
+        const studentsWidget = document.getElementById('studentsWidget');
+        const announcementsWidget = document.getElementById('announcementsWidget');
+        
+        if (studentsWidget) studentsWidget.querySelector('p').textContent = data.students;
+        
+        // Get announcements count
+        if (announcementsWidget) {
+            const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
+            announcementsWidget.querySelector('p').textContent = announcements.length;
+        }
     }
 
     // Logout functionality
@@ -60,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 localStorage.removeItem('loggedInUser');
                 alert('You have been logged out.');
-                window.location.href = '/auth/login/login.html';
+                window.location.href = '../auth/login/login.html';
             });
         } else {
             console.error('Logout button not found in the DOM, retrying...');

@@ -35,12 +35,18 @@
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Prevent the form from submitting normally
 
-    // Get form values
-    const firstName = document.getElementById('fname').value;
-    const lastName = document.getElementById('lname').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    // Get form values and trim whitespace
+    const firstName = document.getElementById('fname').value.trim();
+    const lastName = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
     const role = document.getElementById('role').value; // Role selector
+
+    // Validate inputs
+    if (!firstName || !lastName || !email || !password) {
+        alert('Please fill in all fields.');
+        return;
+    }
 
     // Create a user object
     const user = {
@@ -53,7 +59,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Check if user already exists
     let users = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = users.some(u => u.email === email);
+    const userExists = users.some(u => u.email.trim() === email);
 
     if (userExists) {
         alert('User already exists! Please log in.');
@@ -61,6 +67,9 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         // Add the new user to the users array
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users)); // Store updated user data
+
+        console.log('User registered:', user);
+        console.log('All users:', users);
 
         // Now update dashboard data dynamically
         let dashboardData = JSON.parse(localStorage.getItem('dashboardData')) || {
@@ -81,7 +90,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         // Save the updated dashboard data to localStorage
         localStorage.setItem('dashboardData', JSON.stringify(dashboardData));
 
-        alert('Account created successfully! You can now log in.');
-        window.location.href = '/auth/login/login.html'; // Redirect to login page
+        alert('Account created successfully! You can now log in.\n\nEmail: ' + email);
+        window.location.href = '../login/login.html'; // Redirect to login page
     }
 });
