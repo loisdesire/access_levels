@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="../assests/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+    <style>
+    .tab-btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .tab-btn {
+      padding: 10px 24px;
+      background: #f4f6fa;
+      border: 1px solid #3498db;
+      color: #3498db;
+      border-radius: 6px 6px 0 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tab-btn.active {
+      background: #3498db;
+      color: #fff;
+      border-bottom: 2px solid #fff;
+    }
+    .user-list-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      padding: 20px 18px;
+      margin-bottom: 0;
+    }
+    .user-table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      margin-bottom: 0;
+    }
+    .user-table th, .user-table td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 15px;
+    }
+    .user-table th {
+      background: #f4f6fa;
+      color: #3498db;
+      font-weight: 600;
+    }
+    .user-table tr:last-child td {
+      border-bottom: none;
+    }
+    .create-user-form input,
+    .create-user-form select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d0d0d0;
+      font-size: 15px;
+      margin-bottom: 0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .create-user-form input:focus,
+    .create-user-form select:focus {
+      border-color: #3498db;
+    }
+    </style>
+</head>
+<body>
+    <div id="sidebar-container"></div>
+    <div class="dashboard">
+        <div class="main-content">
+            <header class="header">
+                <div class="user-profile">
+                    <img src="../assests/images/user.webp" alt="User Image">
+                    <span>User Name</span>
+                </div>
+            </header>
+            <section class="widgets" style="margin-bottom: 0;"></section>
+            <section class="user-management-section" style="margin-top: 0;">
+                <div class="card" style="background:#fff;padding:24px 20px 20px 20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.08);margin-bottom:30px;">
+                    <h2 style="margin-bottom:18px;color:#2C3E50;">Manage Users</h2>
+                    <div class="create-user-form" style="margin-bottom:30px;display:flex;flex-direction:column;gap:10px;">
+                        <h3 style="margin-bottom:12px;color:#3498DB;">Create New User</h3>
+                        <form id="createUserForm" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+                            <input type="text" id="firstName" placeholder="First Name" required style="flex:1;min-width:120px;">
+                            <input type="text" id="lastName" placeholder="Last Name" required style="flex:1;min-width:120px;">
+                            <input type="email" id="email" placeholder="Email" required style="flex:2;min-width:180px;">
+                            <input type="password" id="password" placeholder="Password" required style="flex:1;min-width:120px;">
+                            <select id="role" required style="flex:1;min-width:120px;">
+                                <option value="">Select Role</option>
+                                <option value="student">Student</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                            <button type="submit" class="action-btn" style="min-width:150px;"><i class="fas fa-user-plus"></i> Create User</button>
+                        </form>
+                    </div>
+                    <div class="tab-btns">
+                        <button class="tab-btn active" id="staffTabBtn"><i class="fas fa-user-tie"></i> Staff</button>
+                        <button class="tab-btn" id="studentTabBtn"><i class="fas fa-user-graduate"></i> Students</button>
+                    </div>
+                    <div class="user-list-card">
+                        <div class="tab-content">
+                            <table id="staffTable" class="user-table" style="width:100%;margin-bottom:0;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <table id="studentTable" class="user-table" style="width:100%;display:none;margin-bottom:0;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="manage-users.js"></script>
+    <script>
+    // Load the sidebar HTML
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../components/sideBar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-container').innerHTML = data;
+                initializeSidebarNavigation();
+            });
+    });
+    function initializeSidebarNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const basePath = '../';
+        navLinks.forEach(link => {
+            const page = link.getAttribute('data-page');
+            if (page === 'admin') {
+                link.href = 'admin.html';
+            } else if (page === 'announcements') {
+                link.href = basePath + 'modules/announcements/main.html';
+            } else if (page === 'manage-users') {
+                link.href = basePath + 'admin/manage-users.html';
+            }
+        });
+        // Only show Manage Users for admin
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser && loggedInUser.role === 'admin') {
+            const manageUsersNav = document.getElementById('manageUsersNav');
+            if (manageUsersNav) manageUsersNav.style.display = '';
+        }
+    }
+    // Tab switching logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const staffTabBtn = document.getElementById('staffTabBtn');
+        const studentTabBtn = document.getElementById('studentTabBtn');
+        const staffTable = document.getElementById('staffTable');
+        const studentTable = document.getElementById('studentTable');
+        staffTabBtn.addEventListener('click', function() {
+            staffTabBtn.classList.add('active');
+            studentTabBtn.classList.remove('active');
+            staffTable.style.display = '';
+            studentTable.style.display = 'none';
+        });
+        studentTabBtn.addEventListener('click', function() {
+            staffTabBtn.classList.remove('active');
+            studentTabBtn.classList.add('active');
+            staffTable.style.display = 'none';
+            studentTable.style.display = '';
+        });
+    });
+    </script>
+</body>
+</html>

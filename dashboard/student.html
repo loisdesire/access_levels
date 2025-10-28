@@ -27,13 +27,22 @@
 
       <!-- Widgets Section -->
       <section class="widgets">
-        <div class="widget" id="studentsWidget">
-          <h3>Total Students</h3>
+        <div class="widget" id="announcementsWidget">
+          <h3><i class="fas fa-bullhorn"></i> Total Announcements</h3>
           <p>0</p>
         </div>
-        <div class="widget" id="announcementsWidget">
-          <h3>Announcements</h3>
-          <p>0</p>
+      </section>
+
+      <!-- Recent Announcements Section -->
+      <section class="recent-activity">
+        <h2>Recent Announcements</h2>
+        <div id="recentAnnouncementsList" class="announcements-preview">
+          <p class="no-data">No announcements yet.</p>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="action-btn" onclick="window.location.href='../modules/announcements/main.html'">
+            <i class="fas fa-list"></i> View All Announcements
+          </button>
         </div>
       </section>
 
@@ -54,17 +63,16 @@
     
     // Function to initialize sidebar navigation
     function initializeSidebarNavigation() {
-        const navLinks = document.querySelectorAll('.nav-link');
-        const basePath = '../'; // We're in dashboard folder
-        
-        navLinks.forEach(link => {
-            const page = link.getAttribute('data-page');
-            if (page === 'admin') {
-                link.href = 'admin.html';
-            } else if (page === 'announcements') {
-                link.href = basePath + 'modules/announcements/main.html';
-            }
-        });
+    const navLinks = document.querySelectorAll('.nav-link');
+    const basePath = '../'; // We're in dashboard folder
+    navLinks.forEach(link => {
+      const page = link.getAttribute('data-page');
+      if (page === 'admin') {
+        link.href = 'student.html'; // Always go to student dashboard
+      } else if (page === 'announcements') {
+        link.href = basePath + 'modules/announcements/main.html';
+      }
+    });
     }
 
     

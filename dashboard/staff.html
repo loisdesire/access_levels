@@ -26,29 +26,36 @@
 
       <!-- Widgets Section -->
       <section class="widgets">
-        <div class="widget" id="studentsWidget">
-          <h3>Students</h3>
+        <div class="widget" id="myAnnouncementsWidget">
+          <h3><i class="fas fa-megaphone"></i> My Announcements</h3>
           <p>0</p>
         </div>
-        <div class="widget" id="staffsWidget">
-          <h3>Staffs</h3>
+        <div class="widget" id="totalAnnouncementsWidget">
+          <h3><i class="fas fa-bullhorn"></i> Total Announcements</h3>
           <p>0</p>
         </div>
       </section>
 
-      <!-- Charts Section -->
-      <!-- <section class="charts">
-        <div class="chart">
-          <h4>Revenue Growth</h4>
-          <canvas id="revenueChart"></canvas>
-        </div>
-        <div class="chart">
-          <h4>User Engagement</h4>
-          <canvas id="userChart"></canvas>
+      <!-- Quick Actions Section -->
+      <section class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="actions-container">
+          <button class="action-btn" onclick="window.location.href='../modules/announcements/main.html'">
+            <i class="fas fa-plus-circle"></i> Create Announcement
+          </button>
+          <button class="action-btn" onclick="window.location.href='../modules/announcements/main.html'">
+            <i class="fas fa-list"></i> View All Announcements
+          </button>
         </div>
       </section>
-    </div>
-  </div> -->
+
+      <!-- Recent Announcements Section -->
+      <section class="recent-activity">
+        <h2>Recent Announcements</h2>
+        <div id="recentAnnouncementsList" class="announcements-preview">
+          <p class="no-data">No announcements yet.</p>
+        </div>
+      </section>
 
 
   <script>

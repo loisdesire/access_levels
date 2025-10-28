@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,16 +43,41 @@
       <!-- Widgets Section -->
       <section class="widgets">
         <div class="widget" id="revenueWidget">
-          <h3>Admins</h3>
-          <p>8</p>
+          <h3><i class="fas fa-user-shield"></i> Admins</h3>
+          <p>0</p>
         </div>
         <div class="widget" id="usersWidget">
-          <h3>Students</h3>
-          <p>200</p>
+          <h3><i class="fas fa-user-graduate"></i> Students</h3>
+          <p>0</p>
         </div>
         <div class="widget" id="messagesWidget">
-          <h3>Staffs</h3>
-          <p>50</p>
+          <h3><i class="fas fa-chalkboard-teacher"></i> Staff</h3>
+          <p>0</p>
+        </div>
+        <div class="widget" id="announcementsWidget">
+          <h3><i class="fas fa-bullhorn"></i> Announcements</h3>
+          <p>0</p>
+        </div>
+      </section>
+
+      <!-- Quick Actions Section -->
+      <section class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="actions-container">
+          <button class="action-btn" onclick="window.location.href='../modules/announcements/main.html'">
+            <i class="fas fa-plus-circle"></i> Create Announcement
+          </button>
+          <button class="action-btn" onclick="window.location.href='../modules/announcements/main.html'">
+            <i class="fas fa-list"></i> View All Announcements
+          </button>
+        </div>
+      </section>
+
+      <!-- Recent Activity Section -->
+      <section class="recent-activity">
+        <h2>Recent Announcements</h2>
+        <div id="recentAnnouncementsList" class="announcements-preview">
+          <p class="no-data">No announcements yet. Create your first one!</p>
         </div>
       </section>
 
@@ -76,15 +100,22 @@
     function initializeSidebarNavigation() {
         const navLinks = document.querySelectorAll('.nav-link');
         const basePath = '../'; // We're in dashboard folder
-        
         navLinks.forEach(link => {
             const page = link.getAttribute('data-page');
             if (page === 'admin') {
                 link.href = 'admin.html';
             } else if (page === 'announcements') {
                 link.href = basePath + 'modules/announcements/main.html';
+            } else if (page === 'manage-users') {
+                link.href = basePath + 'admin/manage-users.html';
             }
         });
+        // Only show Manage Users for admin
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser && loggedInUser.role === 'admin') {
+            const manageUsersNav = document.getElementById('manageUsersNav');
+            if (manageUsersNav) manageUsersNav.style.display = '';
+        }
     }
 </script>
   <script src="script.js"></script>
