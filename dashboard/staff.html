@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,15 +60,23 @@
   <script>
     // Load the sidebar HTML
     document.addEventListener("DOMContentLoaded", function() {
-  fetch('../components/sideBar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('sidebar-container').innerHTML = data;
-                
-                // Initialize sidebar navigation after it's loaded
-                initializeSidebarNavigation();
-            })
-            .catch(error => console.error('Error loading sidebar:', error));
+      fetch('../components/sideBar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('sidebar-container').innerHTML = data;
+          initializeSidebarNavigation();
+          if (typeof attachLogoutHandler === 'function') {
+            attachLogoutHandler();
+          } else if (document.getElementById('logoutBtn')) {
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+              e.preventDefault();
+              localStorage.removeItem('loggedInUser');
+              alert('You have been logged out.');
+              window.location.href = '../auth/login/login.html';
+            });
+          }
+        })
+        .catch(error => console.error('Error loading sidebar:', error));
     });
     
     // Function to initialize sidebar navigation

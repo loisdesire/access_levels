@@ -89,8 +89,6 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('sidebar-container').innerHTML = data;
-                
-                // Initialize sidebar navigation after it's loaded
                 initializeSidebarNavigation();
             })
             .catch(error => console.error('Error loading sidebar:', error));

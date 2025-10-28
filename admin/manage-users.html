@@ -137,12 +137,23 @@
     <script src="manage-users.js"></script>
     <script>
     // Load the sidebar HTML
+    // (This script is for manage-users.html only)
     document.addEventListener("DOMContentLoaded", function() {
         fetch('../components/sideBar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('sidebar-container').innerHTML = data;
                 initializeSidebarNavigation();
+                // Attach logout handler for this page
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('loggedInUser');
+                        alert('You have been logged out.');
+                        window.location.href = '../auth/login/login.html';
+                    });
+                }
             });
     });
     function initializeSidebarNavigation() {

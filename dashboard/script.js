@@ -132,23 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
         displayRecentAnnouncements(announcements, 7);
     }
 
-    // Logout functionality
-    const checkLogoutButton = () => {
+    // Utility to attach logout handler
+    function attachLogoutHandler() {
         const logoutBtn = document.getElementById('logoutBtn');
-        if (logoutBtn) {
+        if (logoutBtn && !logoutBtn.dataset.bound) {
             logoutBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 localStorage.removeItem('loggedInUser');
                 alert('You have been logged out.');
                 window.location.href = '../auth/login/login.html';
             });
-        } else {
-            console.error('Logout button not found in the DOM, retrying...');
-            setTimeout(checkLogoutButton, 100);
+            logoutBtn.dataset.bound = 'true';
         }
-    };
+    }
 
-    // Start checking for the logout button
-    checkLogoutButton();
+    // Attach after sidebar loads
+    function waitForSidebarAndAttachLogout() {
+        if (document.getElementById('logoutBtn')) {
+            attachLogoutHandler();
+        } else {
+            setTimeout(waitForSidebarAndAttachLogout, 100);
+        }
+    }
+    waitForSidebarAndAttachLogout();
 });
 
