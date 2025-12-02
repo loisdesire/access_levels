@@ -6,6 +6,7 @@
     <title>Announcements</title>
     <link rel="stylesheet" href="../../assests/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-5e2ESR8Ycmos6g3gAKr1Jvwye8sW4U1u/cAKulfVJnkakCcMqhOudbtPnvJ+nbv7" crossorigin="anonymous">
+    <script src="../../assests/js/modal.js"></script>
 </head>
 <body>
 
@@ -21,17 +22,32 @@
             </header>
 
             <section class="announcement-section">
-                <h3>Announcements</h3>
-
-                <div id="announcement-list">
-                    <!-- Announcement items will be dynamically inserted here -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;">Announcements</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <label for="sortBy" style="font-size: 14px; color: #555;">Sort by:</label>
+                        <select id="sortBy" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #d0d0d0; font-size: 14px;">
+                            <option value="date-desc">Date (Newest First)</option>
+                            <option value="date-asc">Date (Oldest First)</option>
+                            <option value="priority">Priority (Urgent First)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Admin and staff can create/edit announcements -->
                 <div id="announcement-actions">
                     <input id="announcement-title" type="text" placeholder="Announcement Title" style="width:100%;margin-bottom:10px;padding:10px;font-size:15px;border-radius:6px;border:1px solid #d0d0d0;">
+                    <select id="announcement-priority" style="width:100%;margin-bottom:10px;padding:10px;font-size:15px;border-radius:6px;border:1px solid #d0d0d0;">
+                        <option value="general">General</option>
+                        <option value="important">Important</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
                     <textarea id="announcement-text" placeholder="Write an announcement..."></textarea>
                     <button id="create-btn" class="create-btn">Create Announcement</button>
+                </div>
+
+                <div id="announcement-list" style="margin-top:30px;">
+                    <!-- Announcement items will be dynamically inserted here -->
                 </div>
             </section>
         </div>
@@ -55,15 +71,27 @@
         function initializeSidebarNavigation() {
             const navLinks = document.querySelectorAll('.nav-link');
             const basePath = '../../'; // We're in modules/announcements folder
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            const userRole = loggedInUser ? loggedInUser.role : 'student';
             
             navLinks.forEach(link => {
                 const page = link.getAttribute('data-page');
                 if (page === 'admin') {
-                    link.href = basePath + 'dashboard/admin.html';
+                    link.href = basePath + 'dashboard/' + userRole + '.html';
                 } else if (page === 'announcements') {
                     link.href = 'main.html';
+                } else if (page === 'profile') {
+                    link.href = basePath + 'modules/profile/profile.html';
+                } else if (page === 'manage-users') {
+                    link.href = basePath + 'admin/manage-users.html';
                 }
             });
+            
+            // Show Manage Users only for admins
+            if (userRole === 'admin') {
+                const manageUsersNav = document.getElementById('manageUsersNav');
+                if (manageUsersNav) manageUsersNav.style.display = '';
+            }
         }
     </script>
 

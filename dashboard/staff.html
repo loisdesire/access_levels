@@ -87,13 +87,18 @@
         navLinks.forEach(link => {
             const page = link.getAttribute('data-page');
             if (page === 'admin') {
-                link.href = 'admin.html';
+                link.href = 'staff.html';
             } else if (page === 'announcements') {
                 link.href = basePath + 'modules/announcements/main.html';
+            } else if (page === 'profile') {
+                link.href = basePath + 'modules/profile/profile.html';
+            } else if (page === 'manage-users') {
+                link.href = basePath + 'admin/manage-users.html';
             }
         });
     }
 </script>
+  <script src="../assests/js/modal.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -78,15 +78,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 day: 'numeric',
                 year: 'numeric'
             });
+            
+            // Priority badge styling
+            const priority = announcement.priority || 'general';
+            let priorityColor, priorityBg, priorityText;
+            if (priority === 'urgent') {
+                priorityColor = '#d32f2f';
+                priorityBg = '#ffebee';
+                priorityText = 'URGENT';
+            } else if (priority === 'important') {
+                priorityColor = '#f57c00';
+                priorityBg = '#fff3e0';
+                priorityText = 'IMPORTANT';
+            } else {
+                priorityColor = '#1976d2';
+                priorityBg = '#e3f2fd';
+                priorityText = 'GENERAL';
+            }
+            
             return `
-                <div class="announcement-card">
-                    <div class="announcement-header">
-                        <h4>${announcement.title}</h4>
-                        <span class="announcement-date">${date}</span>
+                <div class="announcement-card" onclick="window.location.href='../modules/announcements/main.html'" style="cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                        <h4 style="color:#2C3E50;margin:0;flex:1;font-size:15px;">${announcement.title || '(No Title)'}</h4>
+                        <span style="background:${priorityBg};color:${priorityColor};padding:4px 12px;border-radius:12px;font-size:11px;font-weight:bold;">${priorityText}</span>
                     </div>
-                    <p class="announcement-content">${announcement.text}</p>
-                    <div class="announcement-meta">
+                    <p style="margin:8px 0;color:#555;line-height:1.5;max-height:60px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">${announcement.text}</p>
+                    <div class="announcement-meta" style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:#7f8c8d;">
                         <span><i class="fas fa-user"></i> ${announcement.createdBy || 'Admin'}</span>
+                        <span>${date}</span>
                     </div>
                 </div>
             `;
@@ -101,10 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get announcements
         const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
         
-        // Count announcements created by this staff member
+        // Count announcements created by this staff member (matches firstName from loggedInUser)
         const myAnnouncements = announcements.filter(a => 
-            a.createdBy === `${loggedInUser.firstName} ${loggedInUser.lastName}` || 
-            a.createdBy === loggedInUser.email
+            a.createdBy === loggedInUser.firstName
         );
         
         if (myAnnouncementsWidget) {
@@ -136,10 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function attachLogoutHandler() {
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn && !logoutBtn.dataset.bound) {
-            logoutBtn.addEventListener('click', function (e) {
+            logoutBtn.addEventListener('click', async function (e) {
                 e.preventDefault();
                 localStorage.removeItem('loggedInUser');
-                alert('You have been logged out.');
+                await customAlert('You have been logged out.', 'Goodbye');
                 window.location.href = '../auth/login/login.html';
             });
             logoutBtn.dataset.bound = 'true';
